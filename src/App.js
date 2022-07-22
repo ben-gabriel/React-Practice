@@ -6,6 +6,7 @@ import TodoList from "./components/TodoList";
 const App = ()=>{
     
     const [inputText, setInputText] = useState('');
+    const [todos, setTodos] = useState([]);
 
     return(
         <div className="App">
@@ -13,8 +14,16 @@ const App = ()=>{
                 <h1>React Todo List</h1>
             </header>
 
-            <Form setInputText={setInputText}/>
-            <TodoList />
+            <Form 
+                todos={todos} 
+                setTodos={setTodos} 
+                setInputText={setInputText} 
+                inputText={inputText}
+            />
+
+            <TodoList 
+                todos={todos}
+            />
 
         </div>
     
