@@ -7,6 +7,7 @@ const App = ()=>{
     
     const [inputText, setInputText] = useState('');
     const [todos, setTodos] = useState([]);
+    const [sort, setSort] = useState('all');
 
     return(
         <div className="App">
@@ -15,15 +16,17 @@ const App = ()=>{
             </header>
 
             <Form 
-                todos={todos} 
-                setTodos={setTodos} 
-                setInputText={setInputText} 
-                inputText={inputText}
+                todos={todos} setTodos={setTodos} 
+
+                inputText={inputText} setInputText={setInputText} 
+            
+                setSort={setSort}
             />
 
             <TodoList 
-                todos={todos}
-                setTodos={setTodos}
+                todos={todos} setTodos={setTodos}
+                
+                sort={sort}
             />
 
         </div>

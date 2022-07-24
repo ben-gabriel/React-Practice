@@ -1,6 +1,6 @@
 import React from "react";
 
-const Todo = ({text, todos, todo, setTodos})=>{
+const Todo = ({text, todos, todo, setTodos, sort})=>{
 
     const deleteHandler = ()=>{
         setTodos(todos.filter((element) => element.id !== todo.id))
@@ -30,20 +30,43 @@ const Todo = ({text, todos, todo, setTodos})=>{
         setTodos(todos.map((el)=> (el.id === todo.id) ? {...el, completed : !el.completed} : el));
     }
 
-    return (
-        <div className={`todo ${todo.completed ? 'completed': ''}`} >
-            <li className="todo-item">{text}</li>
-            
-            <button onClick={completeHandler} className="complete-btn">
-                <i className="fas fa-check"></i>
-            </button>
-            
-            <button onClick={deleteHandler} className="trash-btn"> 
-                <i className="fas fa-trash"></i> 
-            </button>
-            
-        </div>
-    );
+    if((sort === 'completed' || sort ==='all') && todo.completed){
+        return (
+
+            <div className={`todo ${todo.completed ? 'completed': ''}`} >
+                <li className="todo-item">{text}</li>
+                
+                <button onClick={completeHandler} className="complete-btn">
+                    <i className="fas fa-check"></i>
+                </button>
+                
+                <button onClick={deleteHandler} className="trash-btn"> 
+                    <i className="fas fa-trash"></i> 
+                </button>
+                
+            </div>
+        );
+    }else{
+        
+        if((sort === 'uncompleted' || sort ==='all') && !todo.completed){
+            return (
+    
+                <div className={`todo ${todo.completed ? 'completed': ''}`} >
+                    <li className="todo-item">{text}</li>
+                    
+                    <button onClick={completeHandler} className="complete-btn">
+                        <i className="fas fa-check"></i>
+                    </button>
+                    
+                    <button onClick={deleteHandler} className="trash-btn"> 
+                        <i className="fas fa-trash"></i> 
+                    </button>
+                    
+                </div>
+            );
+        }
+    }
+
 }
 
 export default Todo;
