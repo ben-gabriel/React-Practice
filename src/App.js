@@ -9,22 +9,35 @@ const App = ()=>{
     const [todos, setTodos] = useState([]);
     const [sortedTodos, setSortedTodos] = useState([]);
     const [sort, setSort] = useState('all');
+    
+    useEffect(()=>{
+        if(localStorage.getItem('todos') !== null){
+            let storedTodos = JSON.parse(localStorage.getItem('todos'));
+            console.log('flag 1: ', storedTodos)
+            setTodos(storedTodos);
+            // console.log('flag 1.2: ', todos)
+        }
+    }, []);
+
+    useEffect(()=>{
+        console.log('flag 2: ', todos)
+        if(todos.length>0){
+            localStorage.setItem('todos', JSON.stringify(todos)); 
+        }
+    },[todos]);
 
     useEffect(()=>{
         switch (sort) {
             case 'completed':
-                console.log('test1')
                 setSortedTodos(todos.filter((element) => element.completed === true));
                 break;
             case 'uncompleted':
-                console.log('test2')
                 setSortedTodos(todos.filter((element) => element.completed === false));
                 break;
             default:
                 setSortedTodos(todos);
                 break;
         }
-
     }, [todos,sort]);
 
     return(

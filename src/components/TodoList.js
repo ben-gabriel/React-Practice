@@ -1,7 +1,7 @@
 import React from "react";
 import Todo from './Todo'
 
-const TodoList = ({sortedTodos, setSortedTodos, sort, setTodos})=>{
+const TodoList = ({sortedTodos, sort, setTodos})=>{
     
     return(
         <div className="todo-container">
@@ -14,7 +14,7 @@ const TodoList = ({sortedTodos, setSortedTodos, sort, setTodos})=>{
                         
                         setTodos={setTodos}
 
-                        sortedTodos={sortedTodos} setSortedTodos={setSortedTodos}
+                        sortedTodos={sortedTodos} 
                         
                         sort={sort}
                     />
