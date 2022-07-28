@@ -11,7 +11,20 @@ const App = ()=>{
     const [sort, setSort] = useState('all');
 
     useEffect(()=>{
-        setSortedTodos(todos)
+        switch (sort) {
+            case 'completed':
+                console.log('test1')
+                setSortedTodos(todos.filter((element) => element.completed === true));
+                break;
+            case 'uncompleted':
+                console.log('test2')
+                setSortedTodos(todos.filter((element) => element.completed === false));
+                break;
+            default:
+                setSortedTodos(todos);
+                break;
+        }
+
     }, [todos,sort]);
 
     return(
@@ -29,6 +42,8 @@ const App = ()=>{
             />
 
             <TodoList 
+                setTodos={setTodos}
+                
                 sortedTodos={sortedTodos} setSortedTodos={setSortedTodos}
                 
                 sort={sort}

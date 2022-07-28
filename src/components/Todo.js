@@ -1,9 +1,8 @@
 import React from "react";
-
-const Todo = ({text, sortedTodos, todo, setSortedTodos})=>{
+const Todo = ({text, sortedTodos, setTodos, todo, setSortedTodos})=>{
 
     const deleteHandler = ()=>{
-        setSortedTodos(sortedTodos.filter((element) => element.id !== todo.id))
+        setTodos(sortedTodos.filter((element) => element.id !== todo.id))
     }
 
     const completeHandler = ()=>{
@@ -27,7 +26,7 @@ const Todo = ({text, sortedTodos, todo, setSortedTodos})=>{
         // setSortedTodos(arraymap);
 
         //-----------------------------
-        setSortedTodos(sortedTodos.map((el)=> (el.id === todo.id) ? {...el, completed : !el.completed} : el));
+        setTodos(sortedTodos.map((el)=> (el.id === todo.id) ? {...el, completed : !el.completed} : el));
     }
 
     // if((sort === 'completed' || sort ==='all') && todo.completed){
