@@ -1,9 +1,9 @@
 import React from "react";
 
-const Todo = ({text, todos, todo, setTodos, sort})=>{
+const Todo = ({text, sortedTodos, todo, setSortedTodos})=>{
 
     const deleteHandler = ()=>{
-        setTodos(todos.filter((element) => element.id !== todo.id))
+        setSortedTodos(sortedTodos.filter((element) => element.id !== todo.id))
     }
 
     const completeHandler = ()=>{
@@ -16,7 +16,7 @@ const Todo = ({text, todos, todo, setTodos, sort})=>{
         //     }
         // });
        
-        // setTodos(arraymap);
+        // setSortedTodos(arraymap);
 
         //-----------------------------
         // let arraymap = todos.map((el)=> 
@@ -24,48 +24,60 @@ const Todo = ({text, todos, todo, setTodos, sort})=>{
         // );
         
         // console.log(arraymap)
-        // setTodos(arraymap);
+        // setSortedTodos(arraymap);
 
         //-----------------------------
-        setTodos(todos.map((el)=> (el.id === todo.id) ? {...el, completed : !el.completed} : el));
+        setSortedTodos(sortedTodos.map((el)=> (el.id === todo.id) ? {...el, completed : !el.completed} : el));
     }
 
-    if((sort === 'completed' || sort ==='all') && todo.completed){
-        return (
+    // if((sort === 'completed' || sort ==='all') && todo.completed){
+    //     return (
 
-            <div className={`todo ${todo.completed ? 'completed': ''}`} >
-                <li className="todo-item">{text}</li>
+    //         <div className={`todo ${todo.completed ? 'completed': ''}`} >
+    //             <li className="todo-item">{text}</li>
                 
-                <button onClick={completeHandler} className="complete-btn">
-                    <i className="fas fa-check"></i>
-                </button>
+    //             <button onClick={completeHandler} className="complete-btn">
+    //                 <i className="fas fa-check"></i>
+    //             </button>
                 
-                <button onClick={deleteHandler} className="trash-btn"> 
-                    <i className="fas fa-trash"></i> 
-                </button>
+    //             <button onClick={deleteHandler} className="trash-btn"> 
+    //                 <i className="fas fa-trash"></i> 
+    //             </button>
                 
-            </div>
-        );
-    }else{
+    //         </div>
+    //     );
+    // }
+    // if((sort === 'uncompleted' || sort ==='all') && !todo.completed){
+    //     return (
+    //         <div className={`todo ${todo.completed ? 'completed': ''}`} >
+    //             <li className="todo-item">{text}</li>
+                
+    //             <button onClick={completeHandler} className="complete-btn">
+    //                 <i className="fas fa-check"></i>
+    //             </button>
+                
+    //             <button onClick={deleteHandler} className="trash-btn"> 
+    //                 <i className="fas fa-trash"></i> 
+    //             </button>
+                
+    //         </div>
+    //     );
+    // }
+
+    return(
+        <div className={`todo ${todo.completed ? 'completed': ''}`} >
+            <li className="todo-item">{text}</li>
         
-        if((sort === 'uncompleted' || sort ==='all') && !todo.completed){
-            return (
-    
-                <div className={`todo ${todo.completed ? 'completed': ''}`} >
-                    <li className="todo-item">{text}</li>
-                    
-                    <button onClick={completeHandler} className="complete-btn">
-                        <i className="fas fa-check"></i>
-                    </button>
-                    
-                    <button onClick={deleteHandler} className="trash-btn"> 
-                        <i className="fas fa-trash"></i> 
-                    </button>
-                    
-                </div>
-            );
-        }
-    }
+            <button onClick={completeHandler} className="complete-btn">
+                <i className="fas fa-check"></i>
+            </button>
+        
+            <button onClick={deleteHandler} className="trash-btn"> 
+                <i className="fas fa-trash"></i> 
+            </button>
+        
+        </div>
+    );
 
 }
 
